@@ -51,12 +51,6 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs/.vitepress/dist
-      - name: Move built files to root directory and clean up
-        run: [
-          rm -rf guide reference
-          mv docs/.vitepress/dist/* ./
-          rm -rf docs/.vitepress/dist
-        ]
   # 部署工作
   deploy:
     environment:
@@ -69,3 +63,9 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Move built files to root directory and clean up
+        run: [
+          rm -rf guide reference
+          mv docs/.vitepress/dist/* ./
+          rm -rf docs/.vitepress/dist
+        ]
