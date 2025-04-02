@@ -47,6 +47,12 @@ jobs:
         run: pnpm install # 或 npm ci / yarn install / bun install
       - name: Build with VitePress
         run: pnpm docs:build # 或 npm run docs:build / yarn docs:build / bun run docs:build
+      - name: Move built files to root directory and clean up
+        run: [
+          rm -rf guide reference
+          mv docs/.vitepress/dist/* ./
+          rm -rf docs/.vitepress/dist
+        ]
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
